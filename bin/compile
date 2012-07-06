@@ -60,15 +60,15 @@ function resolve_version() {
   requested_version="$2"
   default_version="$3"
 
-  if [ "$2" == "" ]; then
-    echo $3
-  else
-    args=""
-    for version in $available_versions; do args="${args} -v \"${version}\""; done
-    for version in $requested_version; do args="${args} -r \"${version}\""; done
-    evaluated_version=$(eval $bootstrap_node/bin/node $LP_DIR/vendor/node-semver/bin/semver ${args} || echo "")
-    echo "$evaluated_version" | tail -n 1
+  if [ "$requested_version" == "" ]; then
+    requested_version="$default_version"
   fi
+
+  args=""
+  for version in $available_versions; do args="${args} -v \"${version}\""; done
+  for version in $requested_version; do args="${args} -r \"${version}\""; done
+  evaluated_version=$(eval $bootstrap_node/bin/node $LP_DIR/vendor/node-semver/bin/semver ${args} || echo "")
+  echo "$evaluated_version" | tail -n 1
 }
 
 function package_engine_version() {
