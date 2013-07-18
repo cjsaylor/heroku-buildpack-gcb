@@ -170,8 +170,8 @@ export CPPPATH="$INCLUDE_PATH"
 echo "-----> Installing Gems"
 export GEM_HOME=$BUILD_DIR/.gem/ruby/1.9.1
 PATH="$GEM_HOME/bin:$PATH"
-gem install bundler
-bundle install
+HOME=$BUILD_DIR gem install bundler
+HOME=$BUILD_DIR bundle install
 
 # install dependencies with npm
 echo "-----> Installing dependencies with npm"
