@@ -170,11 +170,13 @@ export CPPPATH="$INCLUDE_PATH"
 echo "-----> Installing gems"
 export GEM_HOME=$BUILD_DIR/.gem/ruby/1.9.1
 PATH="$GEM_HOME/bin:$PATH"
-HOME=$BUILD_DIR gem install --remote toolkit --version "1.1.1"
-HOME=$BUILD_DIR gem install --remote singularitygs --version "1.0.8"
-HOME=$BUILD_DIR gem install --remote compass --version "0.13.alpha.4"
-HOME=$BUILD_DIR gem install --remote modular-scale --version "1.0.6"
+HOME=$BUILD_DIR gem install --remote toolkit --version "~> 1.1.1"
+HOME=$BUILD_DIR gem install --remote singularitygs --version "~> 1.0.8"
+HOME=$BUILD_DIR gem install --remote compass --version "~> 0.13.alpha.4"
+HOME=$BUILD_DIR gem install --remote modular-scale --version "~> 1.0.6"
 
+echo "-----> Check compass version"
+which compass
 
 # install dependencies with npm
 echo "-----> Installing dependencies with npm"
