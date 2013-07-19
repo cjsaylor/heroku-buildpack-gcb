@@ -177,6 +177,7 @@ HOME=$BUILD_DIR gem install --remote modular-scale --version "~> 1.0.6"
 
 echo "-----> Check compass version"
 which compass
+compass -v
 
 # install dependencies with npm
 echo "-----> Installing dependencies with npm"
