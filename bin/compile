@@ -175,15 +175,6 @@ HOME=$BUILD_DIR gem install --remote singularitygs --version "~> 1.0.8"
 HOME=$BUILD_DIR gem install --remote compass --version "~> 0.13.alpha.4"
 HOME=$BUILD_DIR gem install --remote modular-scale --version "~> 1.0.6"
 
-echo "-----> Check app name env var"
-echo $APP_NAME
-echo "1"
-echo APP_NAME
-echo "2"
-echo $BUILDPACK_URL
-echo "3"
-echo BUILDPACK_URL
-
 # install dependencies with npm
 echo "-----> Installing dependencies with npm"
 run_npm "install --production"
