@@ -20,6 +20,10 @@ Create a new app with this buildpack:
 Or add this buildpack to your current app:
 
     heroku config:add BUILDPACK_URL=https://github.com/nbcnews/heroku-buildpack-nodejs-grunt-compass.git
+    
+Or change the buildpack for a specific app:
+
+    heroku config:add BUILDPACK_URL=https://github.com/nbcnews/heroku-buildpack-nodejs-grunt-compass.git --app APP_NAME
 
 Create your Node.js app and add a Gruntfile named  `Gruntfile.js` (or `Gruntfile.coffee` if you want to use CoffeeScript, or `grunt.js` if you are using Grunt 0.3) with a `heroku` task:
 
