@@ -167,18 +167,18 @@ export CPATH="$INCLUDE_PATH"
 export CPPPATH="$INCLUDE_PATH"
 
 # install gems
-echo "-----> Installing gems"
-export GEM_HOME=$BUILD_DIR/.gem/ruby/1.9.1
-PATH="$GEM_HOME/bin:$PATH"
-#HOME=$BUILD_DIR gem install bundler -n $BUILD_DIR/vendor/cache
-#echo "-----> Installing gems via bundler"
-#bundle install --deployment --verbose
+#echo "-----> Installing gems"
+#export GEM_HOME=$BUILD_DIR/.gem/ruby/1.9.1
+#PATH="$GEM_HOME/bin:$PATH"
+##HOME=$BUILD_DIR gem install bundler -n $BUILD_DIR/vendor/cache
+##echo "-----> Installing gems via bundler"
+##bundle install --deployment --verbose
 
-HOME=$BUILD_DIR gem install --conservative --remote compass --version "0.13.alpha.4"
-HOME=$BUILD_DIR gem install --conservative --remote breakpoint --version "2.0.7"
-HOME=$BUILD_DIR gem install --conservative --remote singularitygs --version "1.1.2"
-HOME=$BUILD_DIR gem install --conservative --remote modular-scale --version "1.0.6"
-HOME=$BUILD_DIR gem install --conservative --remote toolkit --version "1.1.1"
+#HOME=$BUILD_DIR gem install --conservative --remote compass --version "0.13.alpha.4"
+#HOME=$BUILD_DIR gem install --conservative --remote breakpoint --version "2.0.7"
+#HOME=$BUILD_DIR gem install --conservative --remote singularitygs --version "1.1.2"
+#HOME=$BUILD_DIR gem install --conservative --remote modular-scale --version "1.0.6"
+#HOME=$BUILD_DIR gem install --conservative --remote toolkit --version "1.1.1"
 
 # install dependencies with npm
 echo "-----> Installing dependencies with npm"
@@ -193,8 +193,8 @@ echo "export PATH=\"\$HOME/.gem/ruby/1.9.1/bin:\$PATH\"" > $BUILD_DIR/.profile.d
 
 if [ -f $BUILD_DIR/grunt.js ] || [ -f $BUILD_DIR/Gruntfile.js ] || [ -f $BUILD_DIR/Gruntfile.coffee ]; then
   run_npm "install grunt-cli"
-  echo "-----> Found Gruntfile, running grunt heroku task"
-  $BUILD_DIR/node_modules/grunt-cli/bin/grunt heroku
+  #echo "-----> Found Gruntfile, running grunt heroku task"
+  #$BUILD_DIR/node_modules/grunt-cli/bin/grunt heroku
 else
   echo "-----> No Gruntfile (grunt.js, Gruntfile.js, Gruntfile.coffee) found"
 fi
