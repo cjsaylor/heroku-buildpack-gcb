@@ -167,11 +167,12 @@ export CPATH="$INCLUDE_PATH"
 export CPPPATH="$INCLUDE_PATH"
 
 # install gems
-echo "-----> Installing gems"
+echo "-----> Installing bundler"
 export GEM_HOME=$BUILD_DIR/.gem/ruby/1.9.1
 PATH="$GEM_HOME/bin:$PATH"
 HOME=$BUILD_DIR gem install bundler
-bundle install --deployment
+echo "-----> Installing gems via bundler"
+bundle install --deployment --verbose
 
 #HOME=$BUILD_DIR gem install --remote compass --version "0.13.alpha.4"
 #HOME=$BUILD_DIR gem install --remote breakpoint --version "2.0.7"
