@@ -167,10 +167,10 @@ export CPATH="$INCLUDE_PATH"
 export CPPPATH="$INCLUDE_PATH"
 
 # install gems
-echo "-----> Installing bundler"
-export GEM_HOME=$BUILD_DIR/.gem/ruby/1.9.1
-PATH="$GEM_HOME/bin:$PATH"
-HOME=$BUILD_DIR gem install bundler
+#echo "-----> Installing bundler"
+#export GEM_HOME=$BUILD_DIR/.gem/ruby/1.9.1
+#PATH="$GEM_HOME/bin:$PATH"
+#HOME=$BUILD_DIR gem install bundler
 echo "-----> Installing gems via bundler"
 bundle install --deployment --verbose
 
