@@ -109,7 +109,7 @@ declare -A engine_versions
 declare -A engine_defaults
 declare -A engine_requests
 
-engine_defaults["node"]="0.10.26"
+engine_defaults["node"]="0.10.x"
 engine_defaults["npm"]="1.2.x"
 
 engine_versions["node"]=$(manifest_versions "nodejs")
@@ -186,8 +186,9 @@ HOME=$BUILD_DIR gem install --remote --ignore-dependencies toolkit --version "1.
 
 # install dependencies with npm
 echo "-----> Installing dependencies with npm"
-run_npm "install --production"
-run_npm "rebuild"
+#run_npm "install --production"
+#run_npm "rebuild"
+run_npm "install"
 echo "Dependencies installed" | indent
 
 echo "-----> Building runtime environment"
