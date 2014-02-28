@@ -184,9 +184,14 @@ HOME=$BUILD_DIR gem install --remote --ignore-dependencies sassy-strings --versi
 HOME=$BUILD_DIR gem install --remote --ignore-dependencies singularitygs --version "1.1.2"
 HOME=$BUILD_DIR gem install --remote --ignore-dependencies toolkit --version "1.1.1"
 
+# Get around new npm ca change
+run_npm "config set strict-ssl false"
+run_npm "config set ca ''"
+echo "npm config get ca"
+echo "npm config get strict-ssl"
+
 # install dependencies with npm
 echo "-----> Installing dependencies with npm"
-run_npm "config set ca ''"
 run_npm "install --production"
 run_npm "rebuild"
 echo "Dependencies installed" | indent
