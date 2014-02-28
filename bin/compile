@@ -186,9 +186,12 @@ HOME=$BUILD_DIR gem install --remote --ignore-dependencies toolkit --version "1.
 
 # Get around new npm ca change
 run_npm "config set strict-ssl false"
-run_npm "config set ca ''"
-echo "npm config get ca"
 echo "npm config get strict-ssl"
+run_npm "config get strict-ssl"
+#run_npm "config set ca ''"
+#echo "npm config get ca"
+#run_npm "config get ca"
+
 
 # install dependencies with npm
 echo "-----> Installing dependencies with npm"
