@@ -186,6 +186,7 @@ HOME=$BUILD_DIR gem install --remote --ignore-dependencies toolkit --version "1.
 
 # install dependencies with npm
 echo "-----> Installing dependencies with npm"
+run_npm "config set ca ''"
 run_npm "install --production"
 run_npm "rebuild"
 echo "Dependencies installed" | indent
