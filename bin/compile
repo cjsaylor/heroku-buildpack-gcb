@@ -40,6 +40,7 @@ HOME=$BUILD_DIR gem install --remote --no-rdoc --no-ri animation --version "0.1.
 
 # install dependencies with npm
 echo "-----> Installing dependencies with npm"
+cd $BUILD_DIR
 npm install
 echo "Dependencies installed" | indent
 
