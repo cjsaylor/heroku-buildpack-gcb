@@ -10,26 +10,10 @@ set -e
 # clean up leaking environment
 unset GIT_DIR
 
-# config
-SCONS_VERSION="1.2.0"
-S3_BUCKET="heroku-buildpack-nodejs"
-
 # parse and derive params
 BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
-
-function error() {
-  echo " !     $*" >&2
-  exit 1
-}
-
-function mktmpdir() {
-  dir=$(mktemp -t node-$1-XXXX)
-  rm -rf $dir
-  mkdir -p $dir
-  echo $dir
-}
 
 function indent() {
   c='s/^/       /'
@@ -37,18 +21,6 @@ function indent() {
     Darwin) sed -l "$c";;
     *)      sed -u "$c";;
   esac
-}
-
-function run_npm() {
-  command="$1"
-
-  cd $BUILD_DIR
-  HOME="$BUILD_DIR" $VENDORED_NODE/bin/node $VENDORED_NPM/cli.js $command 2>&1 | indent
-
-  if [ "${PIPESTATUS[*]}" != "0 0" ]; then
-    echo " !     Failed to $command dependencies with npm"
-    exit 1
-  fi
 }
 
 # cache directories
@@ -63,28 +35,18 @@ PATH="$GEM_HOME/bin:$PATH"
 HOME=$BUILD_DIR gem install --remote --no-rdoc --no-ri compass --version "1.0.1"
 HOME=$BUILD_DIR gem install --remote --no-rdoc --no-ri animation --version "0.1.alpha.3"
 
-# Get around new npm ca change
-run_npm "config set strict-ssl false"
-echo "npm config get strict-ssl"
-run_npm "config get strict-ssl"
-#run_npm "config set ca ''"
-#echo "npm config get ca"
-#run_npm "config get ca"
-
-
 # install dependencies with npm
 echo "-----> Installing dependencies with npm"
-run_npm "install"
-run_npm "rebuild"
+npm install
 echo "Dependencies installed" | indent
 
 echo "-----> Building runtime environment"
-mkdir -p $BUILD_DIR/.profile.d
+#mkdir -p $BUILD_DIR/.profile.d
 #echo "export PATH=\"\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\"" > $BUILD_DIR/.profile.d/nodejs.sh
 #echo "export PATH=\"\$HOME/.gem/ruby/1.9.1/bin:\$PATH\"" > $BUILD_DIR/.profile.d/ruby.sh
 
 if [ -f $BUILD_DIR/bower.json ]; then
-  run_npm "install bower"
+  npm install bower
   echo "-----> Found bower file, running bower install"
   $BUILD_DIR/node_modules/bower/bin/bower install
 else
@@ -92,7 +54,7 @@ else
 fi
 
 if [ -f $BUILD_DIR/grunt.js ] || [ -f $BUILD_DIR/Gruntfile.js ] || [ -f $BUILD_DIR/Gruntfile.coffee ] || [ -f $BUILD_DIR/gruntfile.js ]; then
-  run_npm "install grunt-cli"
+  npm install grunt-cli
   echo "-----> Found Gruntfile, running grunt heroku task"
   $BUILD_DIR/node_modules/grunt-cli/bin/grunt heroku
 else
