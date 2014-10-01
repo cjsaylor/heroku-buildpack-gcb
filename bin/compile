@@ -201,3 +201,11 @@ if [ -f $BUILD_DIR/grunt.js ] || [ -f $BUILD_DIR/Gruntfile.js ] || [ -f $BUILD_D
 else
   echo "-----> No Gruntfile (grunt.js, Gruntfile.js, Gruntfile.coffee) found"
 fi
+
+if [ -f $BUILD_DIR/bower.json ]; then
+  run_npm "install bower"
+  echo "-----> Found bower file, running bower install"
+  $BUILD_DIR/node_modules/bower/bin/bower install
+else
+  echo "-----> No bower file found."
+fi
