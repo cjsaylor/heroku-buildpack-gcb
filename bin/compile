@@ -16,9 +16,7 @@ CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 # Assume vendored node path
-PATH=$build_dir/vendor/node/bin:$PATH
-echo '<------>DEBUG'
-echo $PATH
+PATH=$BUILD_DIR/vendor/node/bin:$PATH
 
 function indent() {
   c='s/^/       /'
