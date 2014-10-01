@@ -17,6 +17,8 @@ LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 # Assume vendored node path
 PATH=$build_dir/vendor/node/bin:$PATH
+echo '<------>DEBUG'
+echo $PATH
 
 function indent() {
   c='s/^/       /'
