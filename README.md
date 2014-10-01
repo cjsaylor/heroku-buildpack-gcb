@@ -4,38 +4,43 @@
 Supported Grunt versions: 0.3 and 0.4.
 See the Grunt [migration guide](https://github.com/gruntjs/grunt/wiki/Upgrading-from-0.3-to-0.4) if you are upgrading from 0.3.
 
-This is a fork of [Heroku's official Node.js buildpack](https://github.com/heroku/heroku-buildpack-nodejs) with added [Grunt](http://gruntjs.com/) support. This buildpack will be modified as needed to meet our specific requirements, please fork if you want a reliable instance of your own.
-Using this buildpack you do not need to commit the results of your Grunt tasks (e.g. minification and concatination of files), keeping your repository clean.
+This is a fork of [Heroku's official Node.js buildpack](https://github.com/heroku/heroku-buildpack-nodejs) with support for [Grunt](http://gruntjs.com/), [Compass](http://compass-style.org/), and [Bower](http://bower.io/). This buildpack could be modified for specific needs of projects that I am working on, so please fork for stability.
 
-After all the default Node.js and NPM build tasks have finished, the buildpack checks if a Gruntfile (`Gruntfile.js`, `Gruntfile.coffee`or `grunt.js`) exists and executes the `heroku` task by running `grunt heroku`. For details about grunt and how to define tasks, check out the [offical documentation](http://gruntjs.com/getting-started). You must add grunt to the NPM dependencies in your `package.json` file.
-If no Gruntfile exists, the buildpacks simply skips the grunt step and executes like the standard Node.js buildpack.
+This buildpack also assumes you are using [Heroku buildpack multi](https://github.com/ddollar/heroku-buildpack-multi).
+
+Compass will install, and if available, grunt and bower will run installations.
 
 Usage
 -----
 
 Create a new app with this buildpack:
 
-    heroku create myapp --buildpack heroku config:add BUILDPACK_URL=https://github.com/nbcnews/heroku-buildpack-nodejs-grunt-compass.git
+    heroku create myapp --buildpack heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
 
 Or add this buildpack to your current app:
 
-    heroku config:add BUILDPACK_URL=https://github.com/nbcnews/heroku-buildpack-nodejs-grunt-compass.git
+    heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
     
 Or change the buildpack for a specific app:
 
-    heroku config:add BUILDPACK_URL=https://github.com/nbcnews/heroku-buildpack-nodejs-grunt-compass.git --app APP_NAME
+    heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git --app APP_NAME
 
-Create your Node.js app and add a Gruntfile named  `Gruntfile.js` (or `Gruntfile.coffee` if you want to use CoffeeScript, or `grunt.js` if you are using Grunt 0.3) with a `heroku` task:
+Create your Node.js app and add a Gruntfile named `gruntfile.js` with a `heroku` task:
 
     grunt.registerTask('heroku', 'clean less mincss');
 
+Create a `.buildpacks` file and add the following (or add to it):
+
+    https://github.com/heroku/heroku-buildpack-nodejs.git
+    https://github.com/cjsaylor/heroku-buildpack-grunt-compass-bower.git
+
+
 Don't forget to add grunt to your dependencies in `package.json`. If your grunt tasks depend on other pre-defined tasks make sure to add these dependencies as well:
 
-    "dependencies": {
+    "devDependencies": {
         ...
         "grunt": "*",
         "grunt-contrib": "*",
-        "less": "*"
     }
 
 Push to heroku
