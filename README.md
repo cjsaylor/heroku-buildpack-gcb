@@ -1,8 +1,7 @@
-## Heroku buildpack: Node.js with grunt support
+## Heroku buildpack: Grunt, Compass, and Bower asset pipeline
 ============================================
 
-Supported Grunt versions: 0.3 and 0.4.
-See the Grunt [migration guide](https://github.com/gruntjs/grunt/wiki/Upgrading-from-0.3-to-0.4) if you are upgrading from 0.3.
+Code derived from [nbcnews's buildpack](nbcnews/heroku-buildpack-nodejs-grunt-compass).
 
 This is a fork of [Heroku's official Node.js buildpack](https://github.com/heroku/heroku-buildpack-nodejs) with support for [Grunt](http://gruntjs.com/), [Compass](http://compass-style.org/), and [Bower](http://bower.io/). This buildpack could be modified for specific needs of projects that I am working on, so please fork for stability.
 
@@ -47,18 +46,12 @@ Push to heroku
 
     git push heroku master
     ...
-    -----> Heroku receiving push
-    -----> Fetching custom buildpack... done
+    =====> Heroku receiving push
+    =====> Fetching custom buildpack... done
     -----> Node.js app detected
-    -----> Resolving engine versions
-           Using Node.js version: 0.8.2
-           Using npm version: 1.1.41
-    -----> Fetching Node.js binaries
-    -----> Vendoring node into slug
-    -----> Installing dependencies with npm
-           ...
-           Dependencies installed
     -----> Building runtime environment
+    -----> Found Bower file, running bower installation.
+    ...
     -----> Found gruntfile, running grunt heroku task
     Running "heroku" task
     ...
@@ -67,10 +60,9 @@ Push to heroku
 Further Information
 -------------------
 
-[Heroku: Buildpacks](https://devcenter.heroku.com/articles/buildpacks)
-
-[Heroku: Getting Started with Node.js](https://devcenter.heroku.com/articles/nodejs)
-
-[Buildpacks: Heroku for Everything](http://blog.heroku.com/archives/2012/7/17/buildpacks/)
-
-[Grunt: a task-based command line build tool for JavaScript projects](http://gruntjs.com/)
+* [Heroku: Buildpacks](https://devcenter.heroku.com/articles/buildpacks)
+* [Heroku: Getting Started with Node.js](https://devcenter.heroku.com/articles/nodejs)
+* [Buildpacks: Heroku for Everything](http://blog.heroku.com/archives/2012/7/17/buildpacks/)
+* [Grunt: a task-based command line build tool for JavaScript projects](http://gruntjs.com/)
+* [Bower](http://bower.io)
+* [Compass](http://compass-style.org)
