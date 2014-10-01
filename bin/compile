@@ -171,18 +171,8 @@ echo "-----> Installing gems"
 export GEM_HOME=$BUILD_DIR/.gem/ruby/1.9.1
 PATH="$GEM_HOME/bin:$PATH"
 
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies breakpoint --version "2.0.5"
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies chunky_png --version "1.2.8"
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies color-schemer --version "0.2.5"
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies compass --version "0.13.alpha.4"
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies compass-blend-modes --version "0.0.2"
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies listen --version "0.7.3"
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies modular-scale --version "1.0.6"
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies sass --version "3.2.9"
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies sassy-math --version "1.5"
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies sassy-strings --version "0.3.1"
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies singularitygs --version "1.1.2"
-HOME=$BUILD_DIR gem install --remote --ignore-dependencies toolkit --version "1.1.1"
+HOME=$BUILD_DIR gem install --remote --no-rdoc --no-ri compass --version "1.0.1"
+HOME=$BUILD_DIR gem install --remote --no-rdoc --no-ri animation --version "0.1.alpha.3"
 
 # Get around new npm ca change
 run_npm "config set strict-ssl false"
